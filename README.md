@@ -1,7 +1,7 @@
-gadgieOps.zsh-kali
+zsh-kali
 =========
 
-Installs zsh and sets as users default shell. The [.zshrc from kali linux](https://gitlab.com/kalilinux/packages/kali-defaults/-/blob/kali/master/etc/skel/.zshrc) is added.
+Ansible role that installs zsh and sets as users default shell. The [.zshrc from kali linux](https://gitlab.com/kalilinux/packages/kali-defaults/-/blob/kali/master/etc/skel/.zshrc) is added.
 
 Tested on:
 - Ubuntu 22.04
