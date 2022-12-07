@@ -3,6 +3,12 @@ zsh-kali
 
 Ansible role that installs zsh and sets as users default shell. The [.zshrc from kali linux](https://gitlab.com/kalilinux/packages/kali-defaults/-/blob/kali/master/etc/skel/.zshrc) is added.
 
+Example:
+~~~
+┌──(gadgieOps@xps)-[~/Projects/gadgieOps.zsh-kali]
+└─$ 
+~~~
+
 Tested on:
 - Ubuntu 22.04
 - CentOS Linux 7
@@ -18,17 +24,20 @@ aliases:
 
 aliases is a list of dictionaries containing two keys: "alias" and "command". Allows of setting persistant aliases in .zshrc.
 
+
 ~~~
 prompt_symbol: "string"
 ~~~
 
 prompt_symbol allows to change the default kali prompt symbol (㉿). 
 
+
 ~~~
 install_auto_completion: bool
 ~~~
 
 install_auto_completion toggles whether or not to install [zsh autocompletion](https://github.com/zsh-users/zsh-completions). Default: true
+
 
 ~~~
 install_auto_suggestion: bool
