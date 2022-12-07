@@ -1,7 +1,7 @@
 zsh-kali
 =========
 
-Ansible role that installs zsh and sets as users default shell. The [.zshrc from kali linux](https://gitlab.com/kalilinux/packages/kali-defaults/-/blob/kali/master/etc/skel/.zshrc) is added.
+Ansible role that installs zsh and sets as users default shell. The [.zshrc from kali linux](https://gitlab.com/kalilinux/packages/kali-defaults/-/blob/kali/master/etc/skel/.zshrc) is used with auto completion and suggestions enabled by default too.
 
 Example:
 ~~~
