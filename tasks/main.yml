@@ -1,0 +1,54 @@
+---
+- name: Install zsh - Debian
+  become: true
+  apt:
+    name: zsh
+    state: present
+    update_cache: true
+  when: ansible_os_family == 'Debian'
+
+- name: Install zsh - RedHat
+  become: true
+  yum:
+    name: zsh
+    state: present
+    update_cache: true
+  when: ansible_os_family == 'RedHat'
+
+- name: Install autosuggestions
+  git:
+    repo: https://github.com/zsh-users/zsh-autosuggestions 
+    dest: ~/.zsh/zsh-autosuggestions/
+    force: true
+  when: install_auto_suggestion | bool
+
+- name: Install autocompletion
+  git:
+    repo: https://github.com/zsh-users/zsh-completions.git
+    dest: ~/.zsh/zsh-completions/
+    force: true
+  when: install_auto_completion | bool
+
+- name: Get .zshrc
+  get_url:
+    url: https://gitlab.com/kalilinux/packages/kali-defaults/-/raw/kali/master/etc/skel/.zshrc?inline=false
+    dest: ~/.zshrc
+
+- name: Change prompt symbol if provided
+  lineinfile:
+    path: ~/.zshrc
+    search_string: "prompt_symbol=㉿"
+    line: "prompt_symbol={{ prompt_symbol }}"
+  when: prompt_symbol is defined
+
+- name: Add aliases if provided
+  blockinfile:
+    dest: ~/.zshrc
+    block: "{{ lookup('template', 'aliases.j2') }}"
+    insertafter: EOF
+  when: aliases is defined
+
+- name: Set user shell to zsh
+  user:
+    name: "{{ ansible_user }}"
+    shell: /usr/bin/zsh

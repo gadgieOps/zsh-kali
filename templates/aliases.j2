@@ -1,0 +1,5 @@
+{% if aliases is defined %}
+{% for alias in aliases %}
+alias {{ alias.alias }}={{ alias.command }}
+{% endfor %}
+{% endif %}
