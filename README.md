@@ -9,6 +9,8 @@ Example:
 └─$ 
 ~~~
 
+For a richer and more customizable zsh experience: [oh my zsh](https://github.com/ohmyzsh/ohmyzsh)
+
 Role Variables
 --------------
 <br>
