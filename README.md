@@ -62,6 +62,16 @@ Example Playbook
         command: vim
 ~~~
 
+result:
+~~~
+┌──(gadgieOps@xps)-[~/Projects/gadgieOps/ha-kubernetes]
+└─$ k get nodes
+NAME      STATUS   ROLES           AGE     VERSION
+barry     Ready    control-plane   10m     v1.25.4
+maurice   Ready    control-plane   10m     v1.25.4
+robin     Ready    control-plane   10m     v1.25.4
+~~~
+
 Support
 -------
 Tested on:
