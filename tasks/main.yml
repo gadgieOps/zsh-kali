@@ -64,3 +64,8 @@
   user:
     name: "{{ ansible_user }}"
     shell: /usr/bin/zsh
+
+- name: source .zshrc
+  shell: "source /home/dave/.zshrc && echo /dev/null"
+  args:
+     executable: /bin/zsh
