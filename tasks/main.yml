@@ -15,11 +15,22 @@
     update_cache: true
   when: ansible_os_family == 'RedHat'
 
+- name: Get .zshrc
+  get_url:
+    url: https://gitlab.com/kalilinux/packages/kali-defaults/-/raw/kali/master/etc/skel/.zshrc?inline=false
+    dest: ~/.zshrc
+
 - name: Install autosuggestions
   git:
     repo: https://github.com/zsh-users/zsh-autosuggestions 
     dest: ~/.zsh/zsh-autosuggestions/
     force: true
+  when: install_auto_suggestion | bool
+
+- name: Source autosuggestions
+  lineinfile:
+    path: ~/.zshrc
+    line: source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
   when: install_auto_suggestion | bool
 
 - name: Install autocompletion
@@ -29,10 +40,11 @@
     force: true
   when: install_auto_completion | bool
 
-- name: Get .zshrc
-  get_url:
-    url: https://gitlab.com/kalilinux/packages/kali-defaults/-/raw/kali/master/etc/skel/.zshrc?inline=false
-    dest: ~/.zshrc
+- name: Source autocompletion 
+  lineinfile:
+    path: ~/.zshrc
+    line: source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+  when: install_auto_completion | bool
 
 - name: Change prompt symbol if provided
   lineinfile:
