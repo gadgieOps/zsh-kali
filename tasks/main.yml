@@ -66,6 +66,6 @@
     shell: /usr/bin/zsh
 
 - name: source .zshrc
-  shell: "source /home/dave/.zshrc && echo /dev/null"
+  shell: "source /home/{{ ansible_user }}/.zshrc && echo /dev/null"
   args:
      executable: /bin/zsh
