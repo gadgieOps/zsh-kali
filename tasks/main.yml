@@ -18,44 +18,44 @@
 - name: Get .zshrc
   get_url:
     url: https://gitlab.com/kalilinux/packages/kali-defaults/-/raw/kali/master/etc/skel/.zshrc?inline=false
-    dest: ~/.zshrc
+    dest: /home/{{ansible_user }}/.zshrc
 
 - name: Install autosuggestions
   git:
     repo: https://github.com/zsh-users/zsh-autosuggestions 
-    dest: ~/.zsh/zsh-autosuggestions/
+    dest: /home/{{ ansible_user }}/.zsh/zsh-autosuggestions/
     force: true
   when: install_auto_suggestion | bool
 
 - name: Source autosuggestions
   lineinfile:
-    path: ~/.zshrc
-    line: source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+    path: /home/{{ ansible_user }}/.zshrc
+    line: source /home/{{ ansible_user }}/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
   when: install_auto_suggestion | bool
 
 - name: Install autocompletion
   git:
     repo: https://github.com/zsh-users/zsh-completions.git
-    dest: ~/.zsh/zsh-completions/
+    dest: /home/{{ ansible_user }}/.zsh/zsh-completions/
     force: true
   when: install_auto_completion | bool
 
 - name: Source autocompletion 
   lineinfile:
-    path: ~/.zshrc
-    line: source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+    path: /home/{{ ansible_user }}/.zshrc
+    line: source /home/{{ ansible_user }}/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
   when: install_auto_completion | bool
 
 - name: Change prompt symbol if provided
   lineinfile:
-    path: ~/.zshrc
+    path: /home/{{ ansible_user }}/.zshrc
     search_string: "prompt_symbol=㉿"
     line: "prompt_symbol={{ prompt_symbol }}"
   when: prompt_symbol is defined
 
 - name: Add aliases if provided
   blockinfile:
-    dest: ~/.zshrc
+    dest: /home/{{ ansible_user }}/.zshrc
     block: "{{ lookup('template', 'aliases.j2') }}"
     insertafter: EOF
   when: aliases is defined
